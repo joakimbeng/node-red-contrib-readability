@@ -6,7 +6,7 @@
 
 A node that runs [`readability-from-string`](https://www.npmjs.com/package/readability-from-string) on the input payload.
 
-The input message **must** contain a `href` property containing the URL for the HTML source,
+The input message **must** contain a `url` property containing the URL for the HTML source,
 which is used for making relative URLs absolute.
 
 ## Installation
@@ -23,7 +23,7 @@ To use the node, launch Node-RED (see [running Node-RED](http://nodered.org/docs
 
 The input payload should be the HTML to run readability on.
 
-The input message must contain an `href` property and it will be used as
+The input message must contain an `url` property and it will be used as
 the `href` option for [`readability-from-string`](https://www.npmjs.com/package/readability-from-string) under the hood.
 
 The output message will be the same as the input but with the following properties attached (if an article was found in the HTML):

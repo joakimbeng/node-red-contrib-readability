@@ -48,7 +48,7 @@ test('sends msg on input', async t => {
 	const RED = red();
 	readabilityNode(RED);
 	const msg = {
-		href: 'http://example.com',
+		url: 'http://example.com',
 		payload: '<html>Lorem ipsum</html>'
 	};
 	const receiver = RED._receive();
@@ -63,7 +63,7 @@ test('includes article content and title in output', async t => {
 	const RED = red();
 	readabilityNode(RED);
 	const msg = {
-		href: 'http://example.com',
+		url: 'http://example.com',
 		payload: `
 			<html>
 				<head>

@@ -6,9 +6,9 @@ module.exports = exports = function (RED) {
 		RED.nodes.createNode(this, config);
 		this.on('input', msg => {
 			const html = msg.payload;
-			const href = msg.href;
+			const url = msg.url;
 			try {
-				const result = readabilityFromString(html, {href}) || {};
+				const result = readabilityFromString(html, {href: url}) || {};
 				this.send(Object.assign({}, msg, {
 					title: result.title,
 					content: result.content,
