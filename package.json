@@ -1,0 +1,47 @@
+{
+  "name": "node-red-contrib-readability",
+  "version": "0.1.0",
+  "description": "A Node-RED readability node",
+  "main": "src/readability.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joakimbeng/node-red-contrib-readability.git"
+  },
+  "keywords": [
+    "node-red",
+    "readability"
+  ],
+  "author": {
+    "name": "Joakim Carlstein",
+    "email": "joakim@beng.se",
+    "url": "http://joakim.beng.se"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joakimbeng/node-red-contrib-readability/issues"
+  },
+  "homepage": "https://github.com/joakimbeng/node-red-contrib-readability#readme",
+  "xo": {
+    "envs": [
+      "node"
+    ]
+  },
+  "node-red": {
+    "nodes": {
+      "readability": "src/readability.js"
+    }
+  },
+  "devDependencies": {
+    "ava": "^0.13.0",
+    "xo": "^0.13.0"
+  },
+  "dependencies": {
+    "readability-from-string": "^1.0.0"
+  }
+}

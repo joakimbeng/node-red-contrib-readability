@@ -1,0 +1,34 @@
+<script type="text/javascript">
+  RED.nodes.registerType('readability',{
+    category: 'function',
+    color: '#28AFB0',
+    defaults: {
+      name: {
+				value: ''
+			}
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: 'readability.png',
+    label: function() {
+      return this.name || 'readability';
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="readability">
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="readability">
+  <p>
+		A node that runs <a href="https://www.npmjs.com/package/readability-from-string"><code>readability-from-string</code></a> on the input payload.
+	</p>
+	<p>
+		The input message <strong>must</strong> contain a <code>href</code> property containing the URL for the HTML source,
+		which is used for making relative URLs absolute.
+	</p>
+</script>
