@@ -1,25 +1,28 @@
 'use strict';
-const readabilityFromString = require('readability-from-string');
+const readabilityJs = require('readability-js');
 
 module.exports = exports = function (RED) {
 	function ReadabilityNode(config) {
 		RED.nodes.createNode(this, config);
 		this.on('input', msg => {
 			const html = msg.payload;
-			const url = msg.url;
-			try {
-				const result = readabilityFromString(html, {href: url}) || {};
+			readabilityJs(html, (err, result) => {
+				if (err) {
+					this.error(err, msg);
+					return;
+				}
+				const title = result.title;
+				const hasContent = Boolean(result.content);
+				const text = hasContent && result.content.text();
+				const content = hasContent && result.content.html();
+				result = undefined;
 				this.send(Object.assign({}, msg, {
-					title: result.title,
-					content: result.content,
-					length: result.length,
-					excerpt: result.excerpt,
-					byline: result.byline,
-					dir: result.dir
+					title,
+					content,
+					text,
+					length: text.length
 				}));
-			} catch (err) {
-				this.error(err, msg);
-			}
+			});
 		});
 	}
 	RED.nodes.registerType('readability', ReadabilityNode);

@@ -42,6 +42,6 @@
     "xo": "^0.13.0"
   },
   "dependencies": {
-    "readability-from-string": "^2.0.0"
+    "readability-js": "^1.0.6"
   }
 }

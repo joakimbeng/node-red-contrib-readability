@@ -25,10 +25,16 @@
 
 <script type="text/x-red" data-help-name="readability">
   <p>
-		A node that runs <a href="https://www.npmjs.com/package/readability-from-string"><code>readability-from-string</code></a> on the input payload.
+		A node that runs <a href="https://www.npmjs.com/package/readability-js"><code>readability-js</code></a> on the input payload.
 	</p>
 	<p>
-		The input message <strong>must</strong> contain a <code>url</code> property containing the URL for the HTML source,
-		which is used for making relative URLs absolute.
+		The output message will be the same as the input but with the following properties attached (if an article was found in the HTML):
+
+		<ul>
+			<li><code>title</code> - the article title</li>
+			<li><code>content</code> - the article content HTML</li>
+			<li><code>text</code> - the article content text</li>
+			<li><code>length</code> - length of article, in characters</li>
+		</ul>
 	</p>
 </script>
