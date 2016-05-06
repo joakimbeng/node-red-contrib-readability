@@ -15,11 +15,13 @@ module.exports = exports = function (RED) {
 				const hasContent = Boolean(result.content);
 				const text = hasContent && result.content.text();
 				const content = hasContent && result.content.html();
+				const excerpt = result.excerpt;
 				result = undefined;
 				this.send(Object.assign({}, msg, {
 					title,
 					content,
 					text,
+					excerpt,
 					length: text.length
 				}));
 			});

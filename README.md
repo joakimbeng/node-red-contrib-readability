@@ -25,6 +25,7 @@ The output message will be the same as the input but with the following properti
 * `title` - the article title
 * `content` - the article content HTML
 * `text` - the article content text
+* `excerpt` - the article description from any description, og:description or twitter:description `<meta>`
 * `length` - length of article, in characters
 
 ## Icon credit
