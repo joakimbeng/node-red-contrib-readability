@@ -20,13 +20,17 @@ To use the node, launch Node-RED (see [running Node-RED](http://nodered.org/docs
 
 The input payload should be the HTML to run readability on.
 
-The output message will be the same as the input but with the following properties attached (if an article was found in the HTML):
+The output payload will have the following properties (if an article was found in the HTML):
 
 * `title` - the article title
 * `content` - the article content HTML
 * `text` - the article content text
 * `excerpt` - the article description from any description, og:description or twitter:description `<meta>`
 * `length` - length of article, in characters
+* `icons` - array of any icons specified as `<link rel=...>` icon tags
+* `meta` - a nested object of meta data, e.g. `<meta property="og:type" content="article">` gives `meta = {og: {type: 'article'}}`
+
+All other properties on the `msg` object will be preserved.
 
 ## Icon credit
 

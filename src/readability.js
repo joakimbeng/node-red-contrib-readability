@@ -16,16 +16,70 @@ module.exports = exports = function (RED) {
 				const text = hasContent && result.content.text();
 				const content = hasContent && result.content.html();
 				const excerpt = result.excerpt;
-				result = undefined;
-				this.send(Object.assign({}, msg, {
+				const payload = {
 					title,
 					content,
 					text,
 					excerpt,
-					length: text.length
-				}));
+					length: text.length,
+					meta: getMeta(result.document),
+					icons: getIcons(result.document)
+				};
+				result = undefined;
+				this.send(Object.assign({}, msg, {payload}));
 			});
 		});
 	}
 	RED.nodes.registerType('readability', ReadabilityNode);
 };
+
+function getMeta($) {
+	const meta = {};
+	$('meta').each(function () {
+		const el = $(this);
+		const name = el.attr('name') || el.attr('property');
+		if (!name) {
+			return;
+		}
+		setMeta(meta, name, el.attr('content'));
+	});
+	return meta;
+}
+
+function getIcons($) {
+	const icons = [];
+	$('link[rel]').each(function () {
+		const el = $(this);
+		const rel = el.attr('rel');
+		if (!rel || rel.indexOf('icon') === -1) {
+			return;
+		}
+		icons.push({
+			href: el.attr('href'),
+			rel: el.attr('rel'),
+			type: el.attr('type') || null,
+			sizes: el.attr('sizes') || null
+		});
+	});
+	return icons;
+}
+
+function setMeta(meta, name, value) {
+	const parts = getName(name).split(':');
+	parts.reduce((obj, prop, i) => {
+		if (i + 1 === parts.length) {
+			obj[prop] = value.trim();
+		} else {
+			obj[prop] = obj[prop] || {};
+		}
+		return obj[prop];
+	}, meta);
+}
+
+function getName(name) {
+	name = name.toLowerCase().replace(/\s/g, '');
+	if (name === 'og:image') {
+		return 'og:image:url';
+	}
+	return name;
+}
