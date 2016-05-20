@@ -80,6 +80,10 @@ function getName(name) {
 	name = name.toLowerCase().replace(/\s/g, '');
 	if (name === 'og:image') {
 		return 'og:image:url';
+	} else if (name === 'og:video') {
+		return 'og:video:url';
+	} else if (name === 'og:audio') {
+		return 'og:audio:url';
 	}
 	return name;
 }
