@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-readability",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "A Node-RED readability node",
   "main": "src/readability.js",
   "directories": {
