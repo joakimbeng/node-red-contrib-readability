@@ -65,6 +65,9 @@ function getIcons($) {
 }
 
 function setMeta(meta, name, value) {
+	if (typeof value !== 'string') {
+		return;
+	}
 	const parts = getName(name).split(':');
 	parts.reduce((obj, prop, i) => {
 		if (i + 1 === parts.length) {
